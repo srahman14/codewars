@@ -8,43 +8,27 @@ def ips_between(start, end):
     # TODO
     startList = start.split('.')
     endList = end.split('.')
-
-    startTotal = 0
+    
     endTotal = 0
-
-    exponent = 3
-    # for i in startList:
-    #     if i == 0:
-    #         exponent -= 1
-    #         continue
-    #     startTotal += int(i) * (256**exponent)
-    #     exponent -= 1
+    startTotal = 0
     
-    # exponent = 3
-    # for i in endList:
-    #     if i == 0:
-    #         exponent -= 1
-    #         continue
-
-    #     endTotal += int(i) * (256**exponent)
-    #     exponent -= 1
-
-    currExp = 3
-    total = 0
     for i in range(4):
-        if (startList[i]) == (endList[i]):
-            currExp -= 1
-            continue 
-        else:
-            total += (int(endList[i]) * 256**currExp) - (int(startList[i])* 256**currExp)
+        startTotal = startTotal + (int(startList[i]) * 256**(3 - i))
+        endTotal = endTotal + (int(endList[i]) * 256**(3 - i))
 
-    return total
+    return endTotal - startTotal
 
-    # newList = []
-    # for i in range(4):
-    #     newList.append(int(startList[i]) ** exponent)
 
-    
-    # return newList
+# from solution import ips_between
+# import codewars_test as test
 
-print(ips_between("10.0.0.0", "10.0.0.50"))
+# @test.describe("Tests")
+# def tests():
+
+#     @test.it("Sample tests")
+#     def fixed_tests():
+#         test.assert_equals(ips_between("150.0.0.0", "150.0.0.1"), 1)
+#         test.assert_equals(ips_between("10.0.0.0", "10.0.0.50"), 50)
+#         test.assert_equals(ips_between("20.0.0.10", "20.0.1.0"), 246)
+#         test.assert_equals(ips_between("10.11.12.13", "10.11.13.0"), 243)
+#         test.assert_equals(ips_between("160.0.0.0", "160.0.1.0"), 256)
